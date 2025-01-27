@@ -1,15 +1,19 @@
-package java.lecture.timecomplexity;
+package javaa.lecture.timecomplexity;
 
 import java.util.Arrays;
-import java.util.concurrent.LinkedTransferQueue;
 
-/* 시간 복잡도를 이해할 수 있다. */
+/* 시간 복잡도를 이해할 수 있다.
+* input 이 얼마나 들어가냐에 따라 output 바뀐다. */
 public class Application {
 
     public static void main(String[] args){
         int[] arr = {3, 1, 2, 15, 4, 9, 10, 7};
         System.out.println(getFirst(arr));
         // 배열 전달 시 그 배열의 인덱스 접근은 상수 시간의 접근이다.
+        System.out.println(binarySearch(arr, 15));
+        // 로그 시간으로 시간복잡도 계산
+        System.out.println(fibonacci(5));
+        // 횟수에 해당하는 값을 출력한다.
     }
 
     /* 상수 시간 0(1) */
@@ -30,7 +34,7 @@ public class Application {
             int mid = left + (right - left)/2;
             if(target == arr[mid]){
                 return mid;
-            } else if(target < arr[mid]){
+            } else if(arr[mid] < target){
                 left = mid + 1;
             }else{
                 right = mid - 1;
@@ -46,5 +50,11 @@ public class Application {
             reversed[i] = arr[arr.length-1-i];
         }
         return reversed;
+    }
+
+    /* 지수 시간 0(2^n) */
+    private static int fibonacci(int n) {
+        if(n <= 1) return n;
+        return fibonacci(n-1) + fibonacci(n-2);
     }
 }
